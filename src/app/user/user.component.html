@@ -1,0 +1,12 @@
+<p>user works!</p>
+
+<h1>Array from parent component</h1>
+<div *ngFor="let user of parentUsers">
+  {{ user.Firstname }} {{ user.Lastname }} - {{ user.Email }}
+</div>
+
+<h1>Array from child component</h1>
+<div *ngFor="let user of childUsers">
+  {{ user.Firstname }} {{ user.Lastname }}
+</div>
+<button (click)="sendChildUsers()">Send Child Users to Parent</button>

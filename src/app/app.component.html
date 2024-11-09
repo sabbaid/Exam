@@ -1,0 +1,62 @@
+<h1>{{ title }}</h1>
+
+<div *ngFor="let user of users">
+  <div *ngIf="user.age > 20">{{ user.firstname }} {{ user.lastname }} - {{ user.age }}</div>
+</div>
+
+<app-user [parentUsers]="parentUsers"></app-user>
+
+<app-user (childUsersEvent)="onReceiveChildUsers($event)"></app-user>
+
+<h1>Received Array from Child Component</h1>
+<div *ngFor="let user of childUsers">
+  {{ user.Firstname }} {{ user.Lastname }}
+</div>
+
+<form [formGroup]="userForm">
+  <div>
+    <label>Id</label>
+    <input formControlName="Id" class="form-control">
+    <div *ngIf="userForm.controls['Id'].invalid && userForm.controls['Id'].touched" class="text-danger">Id is required.</div>
+  </div>
+
+  <div>
+    <label>Firstname</label>
+    <input formControlName="Firstname" class="form-control">
+    <div *ngIf="userForm.controls['Firstname'].invalid && userForm.controls['Firstname'].touched" class="text-danger">
+      Firstname is required and must be at least 3 characters.
+    </div>
+  </div>
+
+  <div>
+    <label>Lastname</label>
+    <input formControlName="Lastname" class="form-control">
+    <div *ngIf="userForm.controls['Lastname'].invalid && userForm.controls['Lastname'].touched" class="text-danger">
+      Lastname is required and must be at least 3 characters.
+    </div>
+  </div>
+
+  <div>
+    <label>Date of Birth</label>
+    <input formControlName="DateOfBirth" type="date" class="form-control">
+    <div *ngIf="userForm.controls['DateOfBirth'].invalid && userForm.controls['DateOfBirth'].touched" class="text-danger">Date of Birth is required.</div>
+  </div>
+
+  <div>
+    <label>Phone Number</label>
+    <input formControlName="PhoneNumber" class="form-control">
+    <div *ngIf="userForm.controls['PhoneNumber'].invalid && userForm.controls['PhoneNumber'].touched" class="text-danger">
+      Phone number is required and must be at least 9 characters.
+    </div>
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input formControlName="Email" class="form-control">
+    <div *ngIf="userForm.controls['Email'].invalid && userForm.controls['Email'].touched" class="text-danger">
+      Email is required and must be at least 8 characters.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary mt-3">Submit</button>
+</form>
